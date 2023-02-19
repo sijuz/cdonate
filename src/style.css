@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+#root {
+
+    --accent: #6743e8;
+
+    --vkui--color_background_accent_themed: var(--accent);
+    --vkui--color_background_accent_themed--hover: var(--accent);
+    --vkui--color_background_accent_themed--active: var(--accent);
+
+    --text_primary: #fff;
+    --header_text: #fff;
+    --header_text_alternate: #fff;
+    --header_tab_active_text: #fff;
+
+    --button_tertiary_foreground: #fff;
+    --cell_button_foreground: #fff;
+    --counter_primary_background: #fff;
+    --control_foreground: #fff;
+    --button_secondary_foreground: #fff;
+    --button_primary_background: #fff;
+    --button_outline_foreground: #fff;
+    --button_outline_border: #fff;
+    --button_muted_foreground: #fff;
+
+    --button_primary_foreground: #000;
+
+    --field_background: rgb(0, 0, 0);
+
+    --panelheader_height_ios: 90px;
+    --vkui--size_panel_header_height--regular: 90px;
+
+
+
+
+}
+
+.vkuiPanel__in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+.vkuiPanel__in .vkuiGroup {
+    width: 100%;
+}
+.vkuiButton {
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+.vkuiButton__content {
+    color: #fff;
+    font-size: 20px!important;
+}
+.vkuiInput {
+    padding: 10px 10px;
+    border-radius: 20px;
+}
+.vkuiInput__el {
+    
+    font-size: 20px!important;
+    
+}
+
+.header {
+    z-index: 30;
+}
+
+
+body * {
+    /* font-family: 'Gilroy'!important */
+    /* font-family: 'Inter Tight', sans-serif!important; */
+    font-family: 'Inter';
+}
+::placeholder { /* Most modern browsers support this now. */
+    color:    var(--tg-theme-text-color)!important;
+ }
+ input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+::placeholder { /* Most modern browsers support this now. */
+    opacity: 0.5!important;
+ }
+
+
+*:not(input, textarea){ user-select:none; }
+
+a,
+a *
+a div,
+a:hover,
+a:hover *
+a:hover div {
+    text-decoration: none!important;
+}
+
+a:-webkit-any-link {
+    color: var(--accent)
+}
+
+
+@media (max-width: 800px) {
+   
+}
