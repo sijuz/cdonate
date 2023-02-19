@@ -23,8 +23,6 @@ import './style.css'
 
 import { Main } from './pages/main'
 
-import logo from './img/logo.svg'
-
 export const App: React.FC = () => {
     const [ activeModal, setActiveModal ] = React.useState<any>(null)
 

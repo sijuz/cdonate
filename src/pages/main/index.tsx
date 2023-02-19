@@ -8,6 +8,7 @@ import {
     Input,
     Panel, PanelHeader, Title
 } from '@vkontakte/vkui'
+import axios from 'axios'
 
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -41,6 +42,8 @@ function fixAmount (nanoAmount: number, type: boolean, nano?: number) {
     return stringAmount
 }
 
+const urlApp = 'https://cdonate-node.sijuz.com/'
+
 export const Main: React.FC<MainProps> = (props: MainProps) => {
     const [ firstRender, setFirstRender ] = React.useState<boolean>(false)
     const location = useLocation()
@@ -50,6 +53,21 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
         .with(vlds.VNumber, 1, 100000)
         .with(vlds.VLen, 1, 128)
         .withFname('Value')
+
+    function openLink (url: string) {
+        const link2 = document.createElement('a')
+        link2.href = url
+        link2.target = '_blank'
+        link2.click()
+    }
+
+    async function createPay () {
+        if (amountBuilder.iserr !== 'error') {
+            axios.post(`${urlApp}create`, { amount: amountBuilder.value }).then((data) => {
+                openLink(`https://test-payform.enotondefi.net/?uuid=${data.data.result.payment_id}`)
+            })
+        }
+    }
 
     useEffect(() => {
         if (!firstRender) {
@@ -68,7 +86,7 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
                 <Div>
                     <Div>
                         <Title level="1" >
-                        Donate for <a href="https://sijuz.t.me">@sijuz</a>
+                        Donate for <a href="https://sijuz.t.me" target="_blank">@sijuz</a>
                         </Title>
                         <small >
                         Донат на еду разработчика Polus
@@ -109,8 +127,9 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
                                 <Div>
                                     <Button
                                         size='l'
-                                        onClick={() => amountBuilder.change('20')}
+                                        onClick={() => createPay()}
                                         stretched
+                                        disabled={amountBuilder.iserr === 'error'}
                                     >
                                         Pay {amountBuilder.value} USD
                                     </Button>

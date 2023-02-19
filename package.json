@@ -1,9 +1,8 @@
 {
-    "name": "payments-form",
+    "name": "cdonate",
     "version": "1.0.1",
     "homepage": "/",
     "main": "./dist/index.js",
-    "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "license": "MIT",
     "scripts": {
