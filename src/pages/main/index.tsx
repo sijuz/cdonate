@@ -46,6 +46,8 @@ const urlApp = 'https://cdonate-node.sijuz.com/'
 
 export const Main: React.FC<MainProps> = (props: MainProps) => {
     const [ firstRender, setFirstRender ] = React.useState<boolean>(false)
+
+    const [ btn, setBtn ] = React.useState<boolean>(false)
     const location = useLocation()
     const history = useNavigate()
 
@@ -62,11 +64,16 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
     }
 
     async function createPay () {
+        setBtn(true)
         if (amountBuilder.iserr !== 'error') {
             axios.post(`${urlApp}create`, { amount: amountBuilder.value }).then((data) => {
-                openLink(`https://test-payform.enotondefi.net/?uuid=${data.data.result.payment_id}`)
+                console.log(data.data)
+                openLink(`https://test-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
             })
         }
+        setTimeout(() => {
+            setBtn(false)
+        }, 10000)
     }
 
     useEffect(() => {
@@ -129,7 +136,7 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
                                         size='l'
                                         onClick={() => createPay()}
                                         stretched
-                                        disabled={amountBuilder.iserr === 'error'}
+                                        disabled={amountBuilder.iserr === 'error' || btn}
                                     >
                                         Pay {amountBuilder.value} USD
                                     </Button>
