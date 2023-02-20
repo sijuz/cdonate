@@ -117,8 +117,8 @@ export const App: React.FC = () => {
                 <SplitCol
                     animate={false}
                     spaced={isDesktop}
-                    width={isDesktop ? '450px' : '100%'}
-                    maxWidth={isDesktop ? '450px' : '100%'}
+                    width={isDesktop ? '500px' : '100%'}
+                    maxWidth={isDesktop ? '500px' : '100%'}
                 >
 
                     <div id="main">
