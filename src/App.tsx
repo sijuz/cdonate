@@ -110,7 +110,7 @@ export const App: React.FC = () => {
                     separator={false}
                     // before={<span>CryptoDonate</span>}
                     className="header"
-                ><span>CDonate</span></PanelHeader>
+                ><span style={{fontWeight: '600'}}>CryptoDonate</span></PanelHeader>
                 }
             >
 

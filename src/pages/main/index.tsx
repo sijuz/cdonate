@@ -48,6 +48,9 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
     const [ firstRender, setFirstRender ] = React.useState<boolean>(false)
 
     const [ btn, setBtn ] = React.useState<boolean>(false)
+
+    const [ link, setLink ] = React.useState<string>('')
+
     const location = useLocation()
     const history = useNavigate()
 
@@ -64,17 +67,24 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
     }
 
     async function createPay () {
-        setBtn(true)
+        // setBtn(true)
         if (amountBuilder.iserr !== 'error') {
             axios.post(`${urlApp}create`, { amount: amountBuilder.value }).then((data) => {
                 console.log(data.data)
-                openLink(`https://test-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
+                // openLink(`https://test-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
+                setLink(`https://test-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
             })
         }
-        setTimeout(() => {
-            setBtn(false)
-        }, 10000)
+        // setTimeout(() => {
+        //     setBtn(false)
+        // }, 10000)
     }
+
+    useEffect(() => {
+        if (amountBuilder.iserr === 'valid') {
+            createPay()
+        }
+    }, [ amountBuilder.value ])
 
     useEffect(() => {
         if (!firstRender) {
@@ -115,11 +125,20 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
                                 <Div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                     <Button
                                         size='l'
-                                        onClick={() => amountBuilder.change('10')}
+                                        onClick={() => amountBuilder.change('2')}
                                         stretched
                                         mode="secondary"
                                     >
-                                        10 USD
+                                        2 $
+                                    </Button>
+                                    <Button
+                                        size='l'
+                                        onClick={() => amountBuilder.change('10')}
+                                        stretched
+                                        style={{ marginLeft: '16px' }}
+                                        mode="secondary"
+                                    >
+                                        10 $
                                     </Button>
                                     <Button
                                         size='l'
@@ -128,17 +147,18 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
                                         style={{ marginLeft: '16px' }}
                                         mode="secondary"
                                     >
-                                        20 USD
+                                        20 $
                                     </Button>
                                 </Div>
                                 <Div>
                                     <Button
                                         size='l'
-                                        onClick={() => createPay()}
+                                        href={link}
+                                        target='_blank'
                                         stretched
                                         disabled={amountBuilder.iserr === 'error' || btn}
                                     >
-                                        Pay {amountBuilder.value} USD
+                                        Pay {amountBuilder.value} $
                                     </Button>
                                 </Div>
                             </Div>
