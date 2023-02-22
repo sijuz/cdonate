@@ -68,6 +68,7 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
 
     async function createPay () {
         // setBtn(true)
+        setLink('')
         if (amountBuilder.iserr !== 'error') {
             axios.post(`${urlApp}create`, { amount: amountBuilder.value }).then((data) => {
                 console.log(data.data)
@@ -156,7 +157,7 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
                                         href={link}
                                         target='_blank'
                                         stretched
-                                        disabled={amountBuilder.iserr === 'error' || btn}
+                                        disabled={amountBuilder.iserr === 'error' || btn || link === ''}
                                     >
                                         Pay {amountBuilder.value} $
                                     </Button>

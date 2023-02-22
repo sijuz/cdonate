@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(100vh - 90px);
     width: 100%;
 }
 .vkuiPanel__in .vkuiGroup {
@@ -45,11 +45,11 @@
 }
 .vkuiButton {
     border-radius: 20px;
-    padding: 5px 10px;
+    padding: 5px 5px;
 }
 .vkuiButton__content {
     color: #fff;
-    font-size: 20px!important;
+    font-size: 18px!important;
 }
 .vkuiInput {
     padding: 10px 10px;
