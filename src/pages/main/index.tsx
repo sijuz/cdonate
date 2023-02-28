@@ -73,7 +73,7 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
             axios.post(`${urlApp}create`, { amount: amountBuilder.value }).then((data) => {
                 console.log(data.data)
                 // openLink(`https://test-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
-                setLink(`https://test-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
+                setLink(`https://dev-payform.enotondefi.net/?uuid=${data.data.data.result.payment_id}`)
             })
         }
         // setTimeout(() => {
